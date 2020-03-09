@@ -1,0 +1,4 @@
+while(value!=100){num++;}
+if(i>10){m += 3;}
+tem?p=3;
+1E;
