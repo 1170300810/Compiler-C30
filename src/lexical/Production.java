@@ -14,11 +14,11 @@ public class Production{
         this.right = right;
     }
 
-    public String[] returnRights(){
+    public String[] getRights(){
         return right;
     }
 
-    public String returnLeft(){
+    public String getLeft(){
         return left;
     }
 
