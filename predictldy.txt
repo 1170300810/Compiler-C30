@@ -1,0 +1,175 @@
+Program#record -> P
+Program#proc -> P
+Program#if -> P
+Program#while -> P
+Program#for -> P
+Program#switch -> P
+Program#call -> P
+Program#return -> P
+Program#id -> P
+Program#int -> P
+Program#real -> P
+Program#char -> P
+Program#$ -> P
+P#record -> D P
+P#proc -> D P
+P#int -> D P
+P#real -> D P
+P#char -> D P
+P#if -> S P
+P#while -> S P
+P#for -> S P
+P#switch -> S P
+P#call -> S P
+P#return -> S P
+P#id -> S P
+P#$ -> empty
+P#} -> empty
+D#int -> T id A;
+D#real -> T id A;
+D#char -> T id A;
+D#record -> record id { P }
+A#= -> = F A
+A#, -> , id A
+T#int -> X C
+T#real -> X C
+T#char -> X C
+X#int -> int
+X#real -> real
+X#char -> char
+C#[ -> [ num ] C
+C#id -> empty
+C#A; -> empty
+S#id -> L = E ;
+S#if -> if B then S else S
+S#while -> while B do S
+E#( -> G E'
+E#id -> G E'
+E#digit -> G E'
+E#char -> G E'
+E'#+ -> + G E'
+E'#; -> empty
+G#( -> F G'
+G#id -> F G'
+G#digit -> F G'
+G#char -> F G'
+G'#* -> * F G'
+G'#+ -> empty
+F#( -> ( E )
+F#id -> id
+F#digit -> digit
+F#char -> char
+L#id -> id L'
+L'#[ -> [ num ] L'
+L'#= -> empty
+L'#( -> empty
+L'#id -> empty
+L'#digit -> empty
+L'#char -> empty
+L'#; -> empty
+S#for -> for ( id = E ; B ; id V ) { S }
+V#++ -> ++
+V#-- -> --
+S#switch -> switch ( id ) { N default : S }
+N#case -> case digit : S N
+N#default -> empty
+N#: -> empty
+N#if -> empty
+N#while -> empty
+N#for -> empty
+N#switch -> empty
+N#call -> empty
+N#return -> empty
+N#id -> empty
+N#} -> empty
+B#not -> H B'
+B#( -> H B'
+B#true -> H B'
+B#false -> H B'
+B#id -> H B'
+B#digit -> H B'
+B#char -> H B'
+B'#or -> or H B'
+B'#then -> empty
+B'#if -> empty
+B'#while -> empty
+B'#for -> empty
+B'#switch -> empty
+B'#call -> empty
+B'#return -> empty
+B'#id -> empty
+B'#else -> empty
+B'#do -> empty
+B'#; -> empty
+B'#++ -> empty
+B'#-- -> empty
+B'#) -> empty
+B'#{ -> empty
+B'#} -> empty
+H#not -> I H'
+H#( -> I H'
+H#true -> I H'
+H#false -> I H'
+H#id -> I H'
+H#digit -> I H'
+H#char -> I H'
+H'#and -> and I H'
+H'#or -> empty
+I#not -> not B
+I#( -> ( B )
+I#( -> E relop E
+I#id -> E relop E
+I#digit -> E relop E
+I#char -> E relop E
+I#true -> true
+I#false -> false
+relop#< -> <
+relop#<= -> <=
+relop#== -> ==
+relop#!= -> !=
+relop#> -> >
+relop#>= -> >=
+D#proc -> proc X id ( M ) { P }
+M#int -> X id M'
+M#real -> X id M'
+M#char -> X id M'
+M#) -> empty
+M#{ -> empty
+M#record -> empty
+M#proc -> empty
+M#if -> empty
+M#while -> empty
+M#for -> empty
+M#switch -> empty
+M#call -> empty
+M#return -> empty
+M#id -> empty
+M#int -> empty
+M#real -> empty
+M#char -> empty
+M#} -> empty
+M'#, -> , X id M'
+M'#) -> empty
+M'#{ -> empty
+M'#record -> empty
+M'#proc -> empty
+M'#if -> empty
+M'#while -> empty
+M'#for -> empty
+M'#switch -> empty
+M'#call -> empty
+M'#return -> empty
+M'#id -> empty
+M'#int -> empty
+M'#real -> empty
+M'#char -> empty
+M'#} -> empty
+S#call -> call id ( Elist ) ;
+S#return -> return E ;
+Elist#( -> E Elist'
+Elist#id -> E Elist'
+Elist#digit -> E Elist'
+Elist#char -> E Elist'
+Elist'#, -> , E Elist'
+Elist'#) -> empty
+Elist'#; -> empty
