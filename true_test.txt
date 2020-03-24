@@ -24,4 +24,3 @@ proc int getSum(int x,int y){
    int k = y;
    return j+k;
 }
-call getSum(1,2);

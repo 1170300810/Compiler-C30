@@ -16,11 +16,11 @@ public class AnalyseList {
     private Map<String, List<String>> follows;
 
     public AnalyseList(){
-        productions = new ArrayList<Production>();
-        terminals = new ArrayList<String>();
-        nonterminals = new ArrayList<String>();
-        firsts = new HashMap<String, List<String>>();
-        follows = new HashMap<String, List<String>>();
+        productions = new ArrayList<>();
+        terminals = new ArrayList<>();
+        nonterminals = new ArrayList<>();
+        firsts = new HashMap<>();
+        follows = new HashMap<>();
 
         setProductions();
         setNonTerminals();

@@ -18,7 +18,6 @@ public class InitialUI {
     private DefaultTableModel dfaListModel;
     private DefaultTableModel errorListModel;
     private String filepath;
-    private JScrollPane jScrollPane;
 
     public InitialUI() throws Exception {
         filepath = "1.xls";
@@ -63,14 +62,17 @@ public class InitialUI {
         panel.add(panel_1);
         panel_1.setLayout(null);
 
-        jScrollPane = new JScrollPane();
-
         textArea = new JTextArea();
+        JScrollPane textSP = new JScrollPane();
+        textSP.setViewportView(textArea);
+        textSP.setBounds(14, 77, 285, 372);
+        panel_1.add(textSP);
 //        textArea.setBackground(new Color(220, 220, 220));
         textArea.setBackground(new Color(255, 255, 255));
         textArea.setBounds(14, 77, 285, 372);
-        panel_1.add(textArea);
+//        panel_1.add(textArea);
         textArea.setColumns(10);
+
 
         final JButton btnNewButton_1 = new JButton("选择文件");
         btnNewButton_1.setFont(new Font("宋体", Font.BOLD, 15));
@@ -103,7 +105,6 @@ public class InitialUI {
                     System.out.println("进入ActionEvent==========================================");
                     Lexer lexer = new Lexer("1.xls", tokenListModel, errorListModel);
                     lexer.lexicalAnalysis(str2);
-                    System.out.println(lexer.getTokenSeq());
                 } catch (Exception e1) {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
